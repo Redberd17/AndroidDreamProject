@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".FragmentLogin">
+    tools:context=".login.FragmentLogin">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/please_enter_username"
         android:layout_gravity="center"
-        android:layout_marginTop="200dp" />
+        android:layout_marginTop="150dp" />
 
     <EditText
         android:id="@+id/username"
@@ -21,10 +22,10 @@
         android:hint="@string/username"
         android:inputType="text"
         android:layout_marginTop="20dp"
-        android:autofillHints=""></EditText>
+        android:autofillHints="" />
 
     <Button
-        android:id="@+id/button_first"
+        android:id="@+id/sign_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

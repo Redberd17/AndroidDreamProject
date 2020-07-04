@@ -1,4 +1,4 @@
-package com.chugunova.dreamstracker.users;
+package com.chugunova.model;
 
 import com.google.gson.annotations.SerializedName;
 

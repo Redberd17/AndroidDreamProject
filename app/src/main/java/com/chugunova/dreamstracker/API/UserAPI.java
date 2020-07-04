@@ -1,6 +1,9 @@
 package com.chugunova.dreamstracker.API;
 
-import com.chugunova.dreamstracker.users.User;
+import com.chugunova.model.Dream;
+import com.chugunova.model.User;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -10,4 +13,7 @@ public interface UserAPI {
 
     @GET("users/{username}")
     Call<User> getUser(@Path("username") String username);
+
+    @GET("users/dreams/{username}")
+    Call<List<Dream>> getDreams(@Path("username") String username);
 }

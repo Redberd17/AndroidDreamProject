@@ -1,7 +1,9 @@
 package com.chugunova.dreamstracker.API;
 
-import com.chugunova.dreamstracker.users.User;
+import com.chugunova.model.Dream;
+import com.chugunova.model.User;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -13,7 +15,7 @@ import retrofit2.http.Path;
 public class ConfigRetrofit {
 
     private static ConfigRetrofit mInstance;
-    private static final String BASE_URL = "http://172.20.10.8:8080";
+    private static final String BASE_URL = "http://172.20.10.9:8080";
     private UserAPI mRetrofit;
 
 
@@ -40,5 +42,9 @@ public class ConfigRetrofit {
 
     public Call<User> getUser(@Path("username") String username) {
         return mRetrofit.getUser(username);
+    }
+
+    public Call<List<Dream>> getDreams(@Path("username") String username) {
+        return mRetrofit.getDreams(username);
     }
 }
