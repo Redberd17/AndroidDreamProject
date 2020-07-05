@@ -1,7 +1,7 @@
 package com.chugunova.dreamstracker.login;
 
 import com.chugunova.dreamstracker.API.ConfigRetrofit;
-import com.chugunova.model.User;
+import com.chugunova.dreamstracker.model.User;
 
 import androidx.annotation.NonNull;
 import retrofit2.*;

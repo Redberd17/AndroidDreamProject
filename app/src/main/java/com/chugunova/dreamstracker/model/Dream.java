@@ -1,6 +1,8 @@
-package com.chugunova.model;
+package com.chugunova.dreamstracker.model;
 
 import com.google.gson.annotations.SerializedName;
+
+import androidx.annotation.NonNull;
 
 public class Dream {
     @SerializedName("dreamName")
@@ -54,6 +56,8 @@ public class Dream {
         this.dreamDuration = dreamDuration;
     }
 
+    @NonNull
+    @Override
     public String toString() {
         return "Dream{dreamName='" + this.dreamName + '\'' + ", dreamDate='" + this.dreamDate + '\'' + ", dreamText='" + this.dreamText + '\'' + ", dreamDuration=" + this.dreamDuration + '}';
     }

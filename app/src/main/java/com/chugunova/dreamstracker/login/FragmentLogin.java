@@ -6,7 +6,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.chugunova.dreamstracker.R;
-import com.chugunova.dreamstracker.dreams.FragmentDreams;
+import com.chugunova.dreamstracker.dreams.FragmentMainDreams;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -65,9 +65,9 @@ public class FragmentLogin extends Fragment {
         argument.putString(ARG_USERNAME, editText.getText().toString());
 
         AppCompatActivity activity = (AppCompatActivity)requireContext();
-        FragmentDreams fragmentDreams = new FragmentDreams();
-        fragmentDreams.setArguments(argument);
-        FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction().replace(R.id.main, fragmentDreams);
+        FragmentMainDreams fragmentMainDreams = new FragmentMainDreams();
+        fragmentMainDreams.setArguments(argument);
+        FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction().replace(R.id.main, fragmentMainDreams);
         fragmentTransaction.commit();
     }
 

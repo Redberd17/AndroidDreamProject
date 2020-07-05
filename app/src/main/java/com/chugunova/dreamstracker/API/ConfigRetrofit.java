@@ -1,7 +1,7 @@
 package com.chugunova.dreamstracker.API;
 
-import com.chugunova.model.Dream;
-import com.chugunova.model.User;
+import com.chugunova.dreamstracker.model.Dream;
+import com.chugunova.dreamstracker.model.User;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -15,7 +15,7 @@ import retrofit2.http.Path;
 public class ConfigRetrofit {
 
     private static ConfigRetrofit mInstance;
-    private static final String BASE_URL = "http://172.20.10.9:8080";
+    private static final String BASE_URL = "http://172.20.10.5:8080";
     private UserAPI mRetrofit;
 
 

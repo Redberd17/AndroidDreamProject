@@ -1,16 +1,16 @@
 package com.chugunova.dreamstracker.dreams;
 
 import com.chugunova.dreamstracker.API.ConfigRetrofit;
-import com.chugunova.model.User;
+import com.chugunova.dreamstracker.model.User;
 
 import androidx.annotation.NonNull;
 import retrofit2.*;
 
-public class DreamsPresenter {
+public class MainDreamsPresenter {
 
-    private FragmentDreams mView;
+    private FragmentMainDreams mView;
 
-    public void onViewResumed(FragmentDreams view) {
+    public void onViewResumed(FragmentMainDreams view) {
         mView = view;
     }
 

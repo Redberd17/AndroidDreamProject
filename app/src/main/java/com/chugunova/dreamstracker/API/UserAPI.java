@@ -1,7 +1,7 @@
 package com.chugunova.dreamstracker.API;
 
-import com.chugunova.model.Dream;
-import com.chugunova.model.User;
+import com.chugunova.dreamstracker.model.Dream;
+import com.chugunova.dreamstracker.model.User;
 
 import java.util.List;
 

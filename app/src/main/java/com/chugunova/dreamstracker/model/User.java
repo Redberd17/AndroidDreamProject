@@ -1,6 +1,8 @@
-package com.chugunova.model;
+package com.chugunova.dreamstracker.model;
 
 import com.google.gson.annotations.SerializedName;
+
+import androidx.annotation.NonNull;
 
 public class User {
 
@@ -30,6 +32,7 @@ public class User {
         this.userPassword = userPassword;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "User{" +

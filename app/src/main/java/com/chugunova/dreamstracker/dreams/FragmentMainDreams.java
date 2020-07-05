@@ -6,7 +6,7 @@ import android.widget.Toast;
 
 import com.chugunova.dreamstracker.API.ConfigRetrofit;
 import com.chugunova.dreamstracker.R;
-import com.chugunova.model.Dream;
+import com.chugunova.dreamstracker.model.Dream;
 
 import java.util.List;
 
@@ -18,7 +18,13 @@ import retrofit2.*;
 
 import static com.chugunova.dreamstracker.login.FragmentLogin.ARG_USERNAME;
 
-public class FragmentDreams extends Fragment {
+public class FragmentMainDreams extends Fragment {
+
+    public static String ARG_DREAM_DATE = "arg_dream_date";
+    public static String ARG_DREAM_NAME = "arg_dream_name";
+    public static String ARG_DREAM_TEXT = "arg_dream_text";
+    public static String ARG_DREAM_DURATION = "arg_dream_duration";
+
 
     private String userName;
 
@@ -40,7 +46,7 @@ public class FragmentDreams extends Fragment {
                 .getDreams(userName)
                 .enqueue(new Callback<List<Dream>>() {
                     @Override
-                    public void onResponse(Call<List<Dream>> call, Response<List<Dream>> response) {
+                    public void onResponse(@NonNull Call<List<Dream>> call, @NonNull Response<List<Dream>> response) {
 
                         if (response.isSuccessful()) {
                             final List<Dream> dreams = response.body();
@@ -55,7 +61,7 @@ public class FragmentDreams extends Fragment {
                     }
 
                     @Override
-                    public void onFailure(Call<List<Dream>> call, Throwable t) {
+                    public void onFailure(@NonNull Call<List<Dream>> call, @NonNull Throwable t) {
                         Toast toast = Toast.makeText(getActivity(), "No response from server", Toast.LENGTH_LONG);
                         toast.show();
                         t.printStackTrace();

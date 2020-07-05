@@ -16,7 +16,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/date_dream"
+                android:id="@+id/date_dreams"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.35"
@@ -26,7 +26,7 @@
                 android:background="@drawable/border" />
 
             <TextView
-                android:id="@+id/name_dream"
+                android:id="@+id/name_dreams"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.65"
@@ -38,7 +38,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/text_dream"
+            android:id="@+id/text_dreams"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
