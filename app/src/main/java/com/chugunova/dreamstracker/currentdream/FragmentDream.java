@@ -1,5 +1,6 @@
-package com.chugunova.dreamstracker.dreams;
+package com.chugunova.dreamstracker.currentdream;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.*;
 import android.widget.TextView;
@@ -11,10 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import static com.chugunova.dreamstracker.dreams.FragmentMainDreams.ARG_DREAM_DATE;
-import static com.chugunova.dreamstracker.dreams.FragmentMainDreams.ARG_DREAM_DURATION;
-import static com.chugunova.dreamstracker.dreams.FragmentMainDreams.ARG_DREAM_NAME;
-import static com.chugunova.dreamstracker.dreams.FragmentMainDreams.ARG_DREAM_TEXT;
+import static com.chugunova.dreamstracker.maindream.FragmentMainDreams.ARG_DREAM_DATE;
+import static com.chugunova.dreamstracker.maindream.FragmentMainDreams.ARG_DREAM_DURATION;
+import static com.chugunova.dreamstracker.maindream.FragmentMainDreams.ARG_DREAM_NAME;
+import static com.chugunova.dreamstracker.maindream.FragmentMainDreams.ARG_DREAM_TEXT;
 
 public class FragmentDream extends Fragment {
 
@@ -37,6 +38,7 @@ public class FragmentDream extends Fragment {
         return inflater.inflate(R.layout.fragment_dream, container, false);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -54,7 +56,7 @@ public class FragmentDream extends Fragment {
 
         dreamDateTv.setText(dreamDate);
         dreamNameTv.setText(dreamName);
-        dreamDurationTv.setText(String.valueOf(dreamDuration) + " ч");
+        dreamDurationTv.setText(dreamDuration + " ч");
         dreamTextTv.setText(dreamText);
     }
 
@@ -62,6 +64,12 @@ public class FragmentDream extends Fragment {
     public void onResume() {
         super.onResume();
         //mPresenter.onViewResumed(this);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.findItem(R.id.action_send).setVisible(false);
     }
 
     public void showToast(String text) {

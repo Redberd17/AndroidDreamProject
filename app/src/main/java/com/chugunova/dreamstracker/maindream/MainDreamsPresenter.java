@@ -1,4 +1,4 @@
-package com.chugunova.dreamstracker.dreams;
+package com.chugunova.dreamstracker.maindream;
 
 import com.chugunova.dreamstracker.API.ConfigRetrofit;
 import com.chugunova.dreamstracker.model.User;

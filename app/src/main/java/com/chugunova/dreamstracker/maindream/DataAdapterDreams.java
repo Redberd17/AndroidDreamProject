@@ -1,4 +1,4 @@
-package com.chugunova.dreamstracker.dreams;
+package com.chugunova.dreamstracker.maindream;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.view.*;
 import android.widget.TextView;
 
 import com.chugunova.dreamstracker.R;
+import com.chugunova.dreamstracker.currentdream.FragmentDream;
 import com.chugunova.dreamstracker.model.Dream;
 
 import java.util.List;
@@ -15,10 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.chugunova.dreamstracker.dreams.FragmentMainDreams.ARG_DREAM_DATE;
-import static com.chugunova.dreamstracker.dreams.FragmentMainDreams.ARG_DREAM_DURATION;
-import static com.chugunova.dreamstracker.dreams.FragmentMainDreams.ARG_DREAM_NAME;
-import static com.chugunova.dreamstracker.dreams.FragmentMainDreams.ARG_DREAM_TEXT;
+import static com.chugunova.dreamstracker.maindream.FragmentMainDreams.ARG_DREAM_DATE;
+import static com.chugunova.dreamstracker.maindream.FragmentMainDreams.ARG_DREAM_DURATION;
+import static com.chugunova.dreamstracker.maindream.FragmentMainDreams.ARG_DREAM_NAME;
+import static com.chugunova.dreamstracker.maindream.FragmentMainDreams.ARG_DREAM_TEXT;
 
 public class DataAdapterDreams extends RecyclerView.Adapter<DataAdapterDreams.ViewHolder> {
 

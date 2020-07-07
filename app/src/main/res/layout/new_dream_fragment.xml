@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_marginTop="50dp"
-    android:orientation="horizontal"
     android:padding="16dp">
 
     <LinearLayout
@@ -16,24 +16,14 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/date_dream"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.35"
-                android:textColor="@android:color/black"
-                android:textSize="23sp"
-                android:textStyle="bold"
-                android:background="@drawable/border" />
-
-            <TextView
-                android:id="@+id/name_dream"
+            <EditText
+                android:id="@+id/name_new_dream"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.65"
+                android:layout_weight="0.6"
                 android:textColor="@android:color/black"
                 android:textSize="23sp"
-                android:textStyle="bold"
+                android:hint="Название сна"
                 android:textAlignment="center"
                 android:background="@drawable/border" />
         </LinearLayout>
@@ -43,42 +33,32 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.8"
-                android:textColor="@android:color/black"
-                android:textSize="23sp"
-                android:text="Продолжительность сна:"
-                android:textStyle="bold"
-                android:background="@drawable/border" />
-
-            <TextView
-                android:id="@+id/dream_duration"
+            <EditText
+                android:id="@+id/duration_new_dream"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.2"
+                android:layout_weight="0.3"
+                android:hint="Продолжительность сна (часы)"
                 android:textColor="@android:color/black"
                 android:textSize="23sp"
-                android:textStyle="bold"
+                android:inputType="numberDecimal"
                 android:textAlignment="center"
                 android:background="@drawable/border" />
         </LinearLayout>
 
-
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/text_dream"
+            <EditText
+                android:id="@+id/text_new_dream"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
+                android:textAlignment="center"
+                android:hint="Описание сна"
                 android:textSize="23sp"
                 android:background="@drawable/border" />
         </ScrollView>
-
-
     </LinearLayout>
 </LinearLayout>

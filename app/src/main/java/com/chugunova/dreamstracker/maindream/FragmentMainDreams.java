@@ -1,18 +1,23 @@
-package com.chugunova.dreamstracker.dreams;
+package com.chugunova.dreamstracker.maindream;
 
 import android.os.Bundle;
 import android.view.*;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chugunova.dreamstracker.API.ConfigRetrofit;
 import com.chugunova.dreamstracker.R;
 import com.chugunova.dreamstracker.model.Dream;
+import com.chugunova.dreamstracker.newdream.FragmentNewDream;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.*;
 
@@ -28,6 +33,9 @@ public class FragmentMainDreams extends Fragment {
 
     private String userName;
 
+    TextView emptyView;
+    public static FloatingActionButton fab;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,11 +44,12 @@ public class FragmentMainDreams extends Fragment {
     }
 
     @Override
-    public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.content_dream, container, false);
+
+        emptyView = view.findViewById(R.id.empty_view);
+
+        fab = view.findViewById(R.id.fab);
 
         ConfigRetrofit.getInstance()
                 .getDreams(userName)
@@ -68,6 +77,23 @@ public class FragmentMainDreams extends Fragment {
                     }
                 });
 
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle argument = new Bundle();
+                argument.putString(ARG_USERNAME, userName);
+                AppCompatActivity activity = (AppCompatActivity)view.getContext();
+
+                FragmentNewDream fragmentNewDream = new FragmentNewDream();
+
+                fragmentNewDream.setArguments(argument);
+
+                FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction().replace(R.id.main, fragmentNewDream);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+
         return view;
     }
 
@@ -78,6 +104,12 @@ public class FragmentMainDreams extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.findItem(R.id.action_send).setVisible(false);
     }
 
     private void loadDataFromArgument() {

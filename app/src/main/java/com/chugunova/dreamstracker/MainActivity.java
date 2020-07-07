@@ -9,6 +9,7 @@ import com.chugunova.dreamstracker.login.FragmentLogin;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity {
@@ -52,9 +53,12 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_logout) {
-            FragmentLogin fragmentLogin = new FragmentLogin();
+            /*FragmentLogin fragmentLogin = new FragmentLogin();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction().replace(R.id.main, fragmentLogin);
-            fragmentTransaction.commit();
+            fragmentTransaction.commit();*/
+
+            FragmentManager fm = getSupportFragmentManager();
+            fm.popBackStackImmediate("Login", FragmentManager.POP_BACK_STACK_INCLUSIVE);
             return true;
         }
 
@@ -64,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-            if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+            if (getSupportFragmentManager().getBackStackEntryCount() <= 1) {
                 ad.show();
             }
         }

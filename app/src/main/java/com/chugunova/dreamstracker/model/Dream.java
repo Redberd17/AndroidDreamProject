@@ -24,6 +24,12 @@ public class Dream {
         this.dreamDuration = dreamDuration;
     }
 
+    public Dream(String dreamName, String dreamText, Double dreamDuration) {
+        this.dreamName = dreamName;
+        this.dreamText = dreamText;
+        this.dreamDuration = dreamDuration;
+    }
+
     public String getDreamName() {
         return this.dreamName;
     }
