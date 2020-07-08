@@ -1,15 +1,30 @@
 <resources>
     <string name="app_name">DreamsTracker</string>
-    <string name="action_logout">Logout</string>
+    <string name="action_logout">Сменить пользователя</string>
     <string name="action_send">Сохранить</string>
-    <!-- Strings used for fragments for navigation -->
+
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
-    <string name="sign_in">Sign in</string>
-    <string name="previous">Log out</string>
+    <string name="sign_in">Войти</string>
 
-    <string name="please_enter_username">Please enter username</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="warning">Внимание</string>
+    <string name="warning_message">Вы действительно хотите закрыть приложение?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
 
-    <string name="username">username</string>
+    <string name="username_incorrect">Неверный логин</string>
+    <string name="no_connection_to_server">Нет соединения с сервером</string>
+
+    <string name="no_response_from_server">Нет ответа от сервера</string>
+
+    <string name="no_data_available">Нет записей о снах</string>
+
+    <string name="dream_not_saved">Упс, что-то пошло не так. Сон не сохранился.</string>
+
+    <string name="hours"> ч</string>
+    <string name="empty">" "</string>
+
+    <string name="please_enter_username">Пожалуйста, введите логин</string>
+
+    <string name="username">логин</string>
 </resources>

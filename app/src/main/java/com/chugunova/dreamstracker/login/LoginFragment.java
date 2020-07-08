@@ -6,7 +6,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.chugunova.dreamstracker.R;
-import com.chugunova.dreamstracker.maindream.FragmentMainDreams;
+import com.chugunova.dreamstracker.maindream.AllDreamsFragment;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-public class FragmentLogin extends Fragment {
+public class LoginFragment extends Fragment {
 
     private LoginPresenter mPresenter;
     public static String ARG_USERNAME = "arg_username";
@@ -65,9 +65,12 @@ public class FragmentLogin extends Fragment {
         argument.putString(ARG_USERNAME, editText.getText().toString());
 
         AppCompatActivity activity = (AppCompatActivity)requireContext();
-        FragmentMainDreams fragmentMainDreams = new FragmentMainDreams();
-        fragmentMainDreams.setArguments(argument);
-        FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction().replace(R.id.main, fragmentMainDreams);
+
+        AllDreamsFragment allDreamsFragment = new AllDreamsFragment();
+
+        allDreamsFragment.setArguments(argument);
+
+        FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction().replace(R.id.main, allDreamsFragment);
         fragmentTransaction.addToBackStack("Login");
         fragmentTransaction.commit();
     }

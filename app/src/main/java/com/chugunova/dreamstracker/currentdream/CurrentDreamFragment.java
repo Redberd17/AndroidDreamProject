@@ -1,6 +1,5 @@
 package com.chugunova.dreamstracker.currentdream;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.*;
 import android.widget.TextView;
@@ -12,22 +11,24 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import static com.chugunova.dreamstracker.maindream.FragmentMainDreams.ARG_DREAM_DATE;
-import static com.chugunova.dreamstracker.maindream.FragmentMainDreams.ARG_DREAM_DURATION;
-import static com.chugunova.dreamstracker.maindream.FragmentMainDreams.ARG_DREAM_NAME;
-import static com.chugunova.dreamstracker.maindream.FragmentMainDreams.ARG_DREAM_TEXT;
+import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_DATE;
+import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_DURATION;
+import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_NAME;
+import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_TEXT;
 
-public class FragmentDream extends Fragment {
+public class CurrentDreamFragment extends Fragment {
 
-    //private LoginPresenter mPresenter;
+    private CurrentDreamPresenter mPresenter;
     public static String ARG_USERNAME = "arg_username";
-
+    private String dreamDate, dreamName, dreamText;
+    Double dreamDuration;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        //mPresenter = new LoginPresenter();
+        loadDataFromArgument();
+        mPresenter = new CurrentDreamPresenter();
     }
 
     @Override
@@ -38,7 +39,6 @@ public class FragmentDream extends Fragment {
         return inflater.inflate(R.layout.fragment_dream, container, false);
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -48,22 +48,16 @@ public class FragmentDream extends Fragment {
         TextView dreamDurationTv = view.findViewById(R.id.dream_duration);
         TextView dreamTextTv = view.findViewById(R.id.text_dream);
 
-        assert getArguments() != null;
-        String dreamDate = getArguments().getString(ARG_DREAM_DATE);
-        String dreamName = getArguments().getString(ARG_DREAM_NAME);
-        Double dreamDuration = getArguments().getDouble(ARG_DREAM_DURATION);
-        String dreamText = getArguments().getString(ARG_DREAM_TEXT);
-
         dreamDateTv.setText(dreamDate);
         dreamNameTv.setText(dreamName);
-        dreamDurationTv.setText(dreamDuration + " ч");
+        dreamDurationTv.setText(String.format("%s%s%s", dreamDuration, getString(R.string.empty), getString(R.string.hours)));
         dreamTextTv.setText(dreamText);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        //mPresenter.onViewResumed(this);
+        mPresenter.onViewResumed(this);
     }
 
     @Override
@@ -77,14 +71,11 @@ public class FragmentDream extends Fragment {
         toast.show();
     }
 
-    public void showMainFragment() {
-       /* Bundle argument = new Bundle();
-        argument.putString(ARG_USERNAME, editText.getText().toString());
-
-        AppCompatActivity activity = (AppCompatActivity)requireContext();
-        FragmentMainDreams fragmentMainDreams = new FragmentMainDreams();
-        fragmentMainDreams.setArguments(argument);
-        FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction().replace(R.id.main, fragmentMainDreams);
-        fragmentTransaction.commit();*/
+    private void loadDataFromArgument() {
+        assert getArguments() != null;
+        dreamDate = getArguments().getString(ARG_DREAM_DATE);
+        dreamName = getArguments() != null ? getArguments().getString(ARG_DREAM_NAME) : null;
+        dreamDuration = getArguments().getDouble(ARG_DREAM_DURATION);
+        dreamText = getArguments().getString(ARG_DREAM_TEXT);
     }
 }

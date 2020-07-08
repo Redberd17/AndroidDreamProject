@@ -6,7 +6,7 @@ import android.view.*;
 import android.widget.TextView;
 
 import com.chugunova.dreamstracker.R;
-import com.chugunova.dreamstracker.currentdream.FragmentDream;
+import com.chugunova.dreamstracker.currentdream.CurrentDreamFragment;
 import com.chugunova.dreamstracker.model.Dream;
 
 import java.util.List;
@@ -16,10 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.chugunova.dreamstracker.maindream.FragmentMainDreams.ARG_DREAM_DATE;
-import static com.chugunova.dreamstracker.maindream.FragmentMainDreams.ARG_DREAM_DURATION;
-import static com.chugunova.dreamstracker.maindream.FragmentMainDreams.ARG_DREAM_NAME;
-import static com.chugunova.dreamstracker.maindream.FragmentMainDreams.ARG_DREAM_TEXT;
+import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_DATE;
+import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_DURATION;
+import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_NAME;
+import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_TEXT;
 
 public class DataAdapterDreams extends RecyclerView.Adapter<DataAdapterDreams.ViewHolder> {
 
@@ -64,21 +64,25 @@ public class DataAdapterDreams extends RecyclerView.Adapter<DataAdapterDreams.Vi
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(View view) {
                     Bundle argument = new Bundle();
                     argument.putString(ARG_DREAM_DATE, dateDream.getText().toString());
                     argument.putString(ARG_DREAM_NAME, nameDream.getText().toString());
                     argument.putString(ARG_DREAM_TEXT, textDream.getText().toString());
                     argument.putDouble(ARG_DREAM_DURATION, duration);
 
-                    AppCompatActivity activity = (AppCompatActivity)view.getContext();
-                    FragmentDream fragmentDream = new FragmentDream();
-                    fragmentDream.setArguments(argument);
-                    FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction().replace(R.id.main, fragmentDream);
-                    fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.commit();
+                    showCurrentDreamFragment(argument, view);
                 }
             });
+        }
+
+        private void showCurrentDreamFragment(Bundle argument, View view) {
+            AppCompatActivity activity = (AppCompatActivity)view.getContext();
+            CurrentDreamFragment currentDreamFragment = new CurrentDreamFragment();
+            currentDreamFragment.setArguments(argument);
+            FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction().replace(R.id.main, currentDreamFragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
         }
     }
 }

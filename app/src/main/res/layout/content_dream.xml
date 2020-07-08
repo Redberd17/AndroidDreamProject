@@ -4,8 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <!-- android:background="@android:color/holo_blue_dark">
- -->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
@@ -21,7 +19,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:visibility="gone"
-        android:text="no_data_available" />
+        android:text="@string/no_data_available" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -33,6 +31,5 @@
         app:maxImageSize="61dp"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@mipmap/plus" />
-
 
 </LinearLayout>
