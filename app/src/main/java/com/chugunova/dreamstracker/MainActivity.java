@@ -1,6 +1,7 @@
 package com.chugunova.dreamstracker;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.*;
 
@@ -13,6 +14,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity {
+
+    SharedPreferences sharedUsername;
+    private final String SHARED_USERNAME = "shared_username";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_logout) {
+            deleteUsername();
             FragmentManager fm = getSupportFragmentManager();
             fm.popBackStackImmediate("Login", FragmentManager.POP_BACK_STACK_INCLUSIVE);
             return true;
@@ -83,5 +88,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    public void deleteUsername() {
+        sharedUsername = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor ed = sharedUsername.edit();
+        ed.putString(SHARED_USERNAME, "");
+        ed.apply();
     }
 }
