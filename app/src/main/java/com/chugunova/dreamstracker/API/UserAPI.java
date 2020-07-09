@@ -1,7 +1,6 @@
 package com.chugunova.dreamstracker.API;
 
-import com.chugunova.dreamstracker.model.Dream;
-import com.chugunova.dreamstracker.model.User;
+import com.chugunova.dreamstracker.model.*;
 
 import java.util.List;
 
@@ -19,4 +18,7 @@ public interface UserAPI {
 
     @POST("users/dreams/dream/{username}")
     Call<ResponseBody> sendDream(@Path("username") String username, @Body Dream dream);
+
+    @GET("users/adviceDurations/{dreamDuration}")
+    Call<AdviceDuration> getAdviceDuration(@Path("dreamDuration") Double dreamDuration);
 }

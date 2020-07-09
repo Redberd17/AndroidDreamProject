@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@drawable/border"
+    android:gravity="center"
+    android:padding="16dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/titleCustomDialog"
+        android:layout_width="match_parent"
+        android:textStyle="bold"
+        android:textColor="@color/colorBlack"
+        android:textSize="24sp"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/textCustomDialog"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:textSize="20sp"
+        android:textColor="@color/colorBlack"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+    <Button
+        android:id="@+id/custom_dialog_button"
+        android:layout_width="50dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/border"
+        android:layout_height="wrap_content"
+        android:text="@string/ok"
+        android:focusable="true" />
+</LinearLayout>

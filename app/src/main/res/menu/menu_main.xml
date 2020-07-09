@@ -6,11 +6,18 @@
         android:id="@+id/action_logout"
         android:orderInCategory="100"
         android:title="@string/action_logout"
+        android:icon="@color/colorItemDream"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_send"
         android:orderInCategory="100"
         android:title="@string/action_send"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/smile"
+        android:title=""
+        android:actionLayout="@layout/custom_item_menu"
         app:showAsAction="ifRoom" />
 </menu>

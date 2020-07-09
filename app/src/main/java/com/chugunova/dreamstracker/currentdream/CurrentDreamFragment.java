@@ -1,14 +1,19 @@
 package com.chugunova.dreamstracker.currentdream;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.*;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 
 import com.chugunova.dreamstracker.R;
+import com.chugunova.dreamstracker.model.AdviceDuration;
+
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_DATE;
@@ -22,6 +27,8 @@ public class CurrentDreamFragment extends Fragment {
     public static String ARG_USERNAME = "arg_username";
     private String dreamDate, dreamName, dreamText;
     Double dreamDuration;
+    MenuItem item;
+    AdviceDuration adviceDuration;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,6 +43,7 @@ public class CurrentDreamFragment extends Fragment {
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
+        mPresenter.onCreateView(dreamDuration);
         return inflater.inflate(R.layout.fragment_dream, container, false);
     }
 
@@ -64,6 +72,19 @@ public class CurrentDreamFragment extends Fragment {
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         menu.findItem(R.id.action_send).setVisible(false);
+        item = menu.findItem(R.id.smile);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.smile) {
+            showAdviceDuration();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void showToast(String text) {
@@ -77,5 +98,51 @@ public class CurrentDreamFragment extends Fragment {
         dreamName = getArguments() != null ? getArguments().getString(ARG_DREAM_NAME) : null;
         dreamDuration = getArguments().getDouble(ARG_DREAM_DURATION);
         dreamText = getArguments().getString(ARG_DREAM_TEXT);
+    }
+
+    public void getAdviceDuration(AdviceDuration adviceDuration) {
+        this.adviceDuration = adviceDuration;
+        configSmile(adviceDuration);
+    }
+
+    private void configSmile(AdviceDuration adviceDuration) {
+        switch (adviceDuration.getAdviceDurGrade()) {
+            case 2: {
+                item.setIcon(R.drawable.bad_dream);
+                break;
+            }
+            case 3: {
+                item.setIcon(R.drawable.normal_dream);
+                break;
+            }
+            case 4: {
+                item.setIcon(R.drawable.good_dream);
+                break;
+            }
+            case 5: {
+                item.setIcon(R.drawable.perfect_dream);
+                break;
+            }
+        }
+    }
+
+    private void showAdviceDuration() {
+        final AlertDialog.Builder ad = new AlertDialog.Builder(requireContext());
+        final View customLayout = getLayoutInflater().inflate(R.layout.custom_dialog, null);
+        ad.setView(customLayout);
+        TextView text = customLayout.findViewById(R.id.textCustomDialog);
+        TextView title = customLayout.findViewById(R.id.titleCustomDialog);
+        Button button = customLayout.findViewById(R.id.custom_dialog_button);
+        title.setText(adviceDuration.getAdviceDurName());
+        text.setText(adviceDuration.getAdviceDurText());
+        final AlertDialog dialog = ad.create();
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
     }
 }

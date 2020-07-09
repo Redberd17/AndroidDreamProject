@@ -54,12 +54,18 @@ public class NewDreamFragment extends Fragment {
     }
 
     @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.findItem(R.id.smile).setVisible(false);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.action_send) {
             if (dreamName.getText().toString().isEmpty() || dreamText.getText().toString().isEmpty() || dreamDuration.getText().toString().isEmpty()) {
-                showToast("Data incorrect");
+                showToast(getString(R.string.data_incorrect));
                 return false;
             }
             Dream dream = new Dream(dreamName.getText().toString(), dreamText.getText().toString(), Double.parseDouble(dreamDuration.getText().toString()));

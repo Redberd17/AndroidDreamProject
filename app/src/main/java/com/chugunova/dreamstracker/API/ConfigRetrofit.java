@@ -1,7 +1,6 @@
 package com.chugunova.dreamstracker.API;
 
-import com.chugunova.dreamstracker.model.Dream;
-import com.chugunova.dreamstracker.model.User;
+import com.chugunova.dreamstracker.model.*;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -52,5 +51,9 @@ public class ConfigRetrofit {
 
     public Call<ResponseBody> sendDream(@Path("username") String username, @Body Dream dream) {
         return mRetrofit.sendDream(username, dream);
+    }
+
+    public Call<AdviceDuration> getAdviceDuration(@Path("adviceDuration") Double dreamDuration) {
+        return mRetrofit.getAdviceDuration(dreamDuration);
     }
 }

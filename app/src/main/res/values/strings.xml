@@ -12,12 +12,28 @@
     <string name="yes">Да</string>
     <string name="no">Нет</string>
 
+    <string name="adviceDuration">Совет</string>
+
+    <string name="ok">OK</string>
+
     <string name="username_incorrect">Неверный логин</string>
     <string name="no_connection_to_server">Нет соединения с сервером</string>
 
     <string name="no_response_from_server">Нет ответа от сервера</string>
 
     <string name="no_data_available">Нет записей о снах</string>
+
+    <string name="description_new_dream">Добавить новый сон</string>
+
+    <string name="description_advice">Оценка сна</string>
+
+    <string name="dream_duration">Продолжительность сна:</string>
+
+    <string name="hint_dream_text">Описание сна</string>
+    <string name="hint_dream_duration">Продолжительность сна (часы)</string>
+    <string name="hint_dream_name">Название сна</string>
+
+    <string name="data_incorrect">Не все поля заполнены</string>
 
     <string name="dream_not_saved">Упс, что-то пошло не так. Сон не сохранился.</string>
 

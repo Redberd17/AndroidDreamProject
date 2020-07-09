@@ -11,25 +11,26 @@
         android:layout_height="0dp"
         android:layout_marginTop="50dp"
         android:layout_weight="1"
+        android:visibility="visible"
         app:layoutManager="LinearLayoutManager" />
 
     <TextView
         android:id="@+id/empty_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="1"
         android:gravity="center"
         android:visibility="gone"
+        android:textColor="@color/colorWhite"
         android:text="@string/no_data_available" />
 
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:background="@color/colorWhite"
-        app:maxImageSize="61dp"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@mipmap/plus" />
-
+        android:src="@mipmap/plus_1"
+        android:padding="5dp"
+        android:background="@drawable/round"
+        android:contentDescription="@string/description_new_dream" />
 </LinearLayout>

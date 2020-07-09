@@ -49,7 +49,10 @@ public class DataAdapterDreams extends RecyclerView.Adapter<DataAdapterDreams.Vi
 
     @Override
     public int getItemCount() {
-        return dreams.size();
+        if (dreams != null) {
+            return dreams.size();
+        }
+        return 0;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

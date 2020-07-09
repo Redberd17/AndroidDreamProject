@@ -5,5 +5,9 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="colorCustom">#7FFFD4</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorToolbar">#1a1d22</color>
+    <color name="colorItemDream">#DEB887</color>
+
 
 </resources>

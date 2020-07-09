@@ -2,13 +2,11 @@ package com.chugunova.dreamstracker.maindream;
 
 import android.os.Bundle;
 import android.view.*;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 
 import com.chugunova.dreamstracker.R;
 import com.chugunova.dreamstracker.model.Dream;
 import com.chugunova.dreamstracker.newdream.NewDreamFragment;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -32,9 +30,10 @@ public class AllDreamsFragment extends Fragment {
     private String userName;
 
     TextView emptyView;
-    public static FloatingActionButton fab;
+    public ImageButton fab;
     private AllDreamsPresenter mPresenter;
     private View mView;
+    private RecyclerView recyclerView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,6 +50,7 @@ public class AllDreamsFragment extends Fragment {
         emptyView = view.findViewById(R.id.empty_view);
         mView = view;
         fab = view.findViewById(R.id.fab);
+        recyclerView = mView.findViewById(R.id.list);
 
         mPresenter.onCreateView(userName);
 
@@ -74,10 +74,10 @@ public class AllDreamsFragment extends Fragment {
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         menu.findItem(R.id.action_send).setVisible(false);
+        menu.findItem(R.id.smile).setVisible(false);
     }
 
     public void showAllDreams(List<Dream> dreams) {
-        RecyclerView recyclerView = mView.findViewById(R.id.list);
         DataAdapterDreams adapter = new DataAdapterDreams(getContext(), dreams);
         recyclerView.setAdapter(adapter);
     }
@@ -104,6 +104,7 @@ public class AllDreamsFragment extends Fragment {
     public void showTextNoData() {
         TextView textView = mView.findViewById(R.id.empty_view);
         textView.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
     }
 
     public void showToast(String message) {
