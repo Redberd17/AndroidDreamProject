@@ -28,11 +28,13 @@
         android:layout_marginTop="20dp"
         android:autofillHints="" />
 
-    <Button
+    <ImageButton
         android:id="@+id/sign_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/sign_in"
-        android:layout_gravity="center" />
+        android:src="@mipmap/login"
+        android:padding="5dp"
+        android:background="@drawable/round"
+        android:layout_gravity="center"
+        android:contentDescription="@string/description_button_login" />
 </LinearLayout>

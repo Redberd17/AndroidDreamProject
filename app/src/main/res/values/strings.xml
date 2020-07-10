@@ -24,6 +24,7 @@
     <string name="no_data_available">Нет записей о снах</string>
 
     <string name="description_new_dream">Добавить новый сон</string>
+    <string name="description_button_login">Войти</string>
 
     <string name="description_advice">Оценка сна</string>
 
