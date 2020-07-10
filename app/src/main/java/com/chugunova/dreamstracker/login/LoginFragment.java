@@ -25,7 +25,7 @@ public class LoginFragment extends Fragment {
 
     SharedPreferences sharedUsername;
     private final String SHARED_USERNAME = "shared_username";
-    private String username;
+    public static String username;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

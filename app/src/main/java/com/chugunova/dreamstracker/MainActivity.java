@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void deleteUsername() {
+        LoginFragment.username = "";
         sharedUsername = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor ed = sharedUsername.edit();
         ed.putString(SHARED_USERNAME, "");
