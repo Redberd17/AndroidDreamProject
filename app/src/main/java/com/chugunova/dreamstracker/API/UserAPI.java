@@ -10,15 +10,18 @@ import retrofit2.http.*;
 
 public interface UserAPI {
 
-    @GET("users/{username}")
-    Call<User> getUser(@Path("username") String username);
+    @POST("/auth/login")
+    Call<UserSecurity> authorization(@Body User user);
 
-    @GET("users/dreams/{username}")
-    Call<List<Dream>> getDreams(@Path("username") String username);
+    /*@GET("users/{username}")
+    Call<User> getUser(@Path("username") String username);*/
 
-    @POST("users/dreams/dream/{username}")
-    Call<ResponseBody> sendDream(@Path("username") String username, @Body Dream dream);
+    @GET("users/dreams")
+    Call<List<Dream>> getDreams(@Header("Authorization") String token);
+
+    @POST("users/dreams/dream")
+    Call<ResponseBody> sendDream(@Header("Authorization") String token, @Body Dream dream);
 
     @GET("users/adviceDurations/{dreamDuration}")
-    Call<AdviceDuration> getAdviceDuration(@Path("dreamDuration") Double dreamDuration);
+    Call<AdviceDuration> getAdviceDuration(@Header("Authorization") String token, @Path("dreamDuration") Double dreamDuration);
 }

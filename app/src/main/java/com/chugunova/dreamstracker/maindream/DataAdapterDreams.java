@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import static com.chugunova.dreamstracker.login.LoginFragment.ARG_TOKEN;
 import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_DATE;
 import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_DURATION;
 import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_NAME;
@@ -25,10 +26,12 @@ public class DataAdapterDreams extends RecyclerView.Adapter<DataAdapterDreams.Vi
 
     private LayoutInflater inflater;
     private List<Dream> dreams;
+    private String token;
 
-    public DataAdapterDreams(Context context, List<Dream> dreams) {
+    public DataAdapterDreams(Context context, List<Dream> dreams, String token) {
         this.inflater = LayoutInflater.from(context);
         this.dreams = dreams;
+        this.token = token;
     }
 
     @NonNull
@@ -45,6 +48,7 @@ public class DataAdapterDreams extends RecyclerView.Adapter<DataAdapterDreams.Vi
         holder.nameDream.setText(dream.getDreamName());
         holder.textDream.setText(dream.getDreamText());
         holder.duration = dream.getDreamDuration();
+        holder.token = token;
     }
 
     @Override
@@ -57,7 +61,8 @@ public class DataAdapterDreams extends RecyclerView.Adapter<DataAdapterDreams.Vi
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         final TextView dateDream, nameDream, textDream;
-        public Double duration;
+        private Double duration;
+        private String token;
 
         ViewHolder(final View view) {
             super(view);
@@ -73,6 +78,7 @@ public class DataAdapterDreams extends RecyclerView.Adapter<DataAdapterDreams.Vi
                     argument.putString(ARG_DREAM_NAME, nameDream.getText().toString());
                     argument.putString(ARG_DREAM_TEXT, textDream.getText().toString());
                     argument.putDouble(ARG_DREAM_DURATION, duration);
+                    argument.putString(ARG_TOKEN, token);
 
                     showCurrentDreamFragment(argument, view);
                 }

@@ -10,13 +10,14 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Body;
-import retrofit2.http.Path;
+import retrofit2.http.*;
 
 public class ConfigRetrofit {
 
     private static ConfigRetrofit mInstance;
     private static final String BASE_URL = "http://10.0.2.2:8080";
+    //private static final String BASE_URL = "http://172.20.10.4:8080";
+
     private UserAPI mRetrofit;
 
 
@@ -41,19 +42,24 @@ public class ConfigRetrofit {
         return mInstance;
     }
 
-    public Call<User> getUser(@Path("username") String username) {
+
+    public Call<UserSecurity> authorizationUser(@Body User user) {
+        return mRetrofit.authorization(user);
+    }
+
+    /*public Call<User> getUser(@Path("username") String username) {
         return mRetrofit.getUser(username);
+    }*/
+
+    public Call<List<Dream>> getDreams(@Header("Authorization") String token) {
+        return mRetrofit.getDreams(token);
     }
 
-    public Call<List<Dream>> getDreams(@Path("username") String username) {
-        return mRetrofit.getDreams(username);
+    public Call<ResponseBody> sendDream(@Header("Authorization") String token, @Body Dream dream) {
+        return mRetrofit.sendDream(token, dream);
     }
 
-    public Call<ResponseBody> sendDream(@Path("username") String username, @Body Dream dream) {
-        return mRetrofit.sendDream(username, dream);
-    }
-
-    public Call<AdviceDuration> getAdviceDuration(@Path("adviceDuration") Double dreamDuration) {
-        return mRetrofit.getAdviceDuration(dreamDuration);
+    public Call<AdviceDuration> getAdviceDuration(@Header("Authorization") String token, @Path("adviceDuration") Double dreamDuration) {
+        return mRetrofit.getAdviceDuration(token, dreamDuration);
     }
 }

@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import static com.chugunova.dreamstracker.login.LoginFragment.ARG_TOKEN;
 import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_DATE;
 import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_DURATION;
 import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_NAME;
@@ -29,6 +30,7 @@ public class CurrentDreamFragment extends Fragment {
     Double dreamDuration;
     MenuItem item;
     AdviceDuration adviceDuration;
+    private String token;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,7 +45,7 @@ public class CurrentDreamFragment extends Fragment {
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-        mPresenter.onCreateView(dreamDuration);
+        mPresenter.onCreateView(dreamDuration, token);
         return inflater.inflate(R.layout.fragment_dream, container, false);
     }
 
@@ -98,6 +100,7 @@ public class CurrentDreamFragment extends Fragment {
         dreamName = getArguments() != null ? getArguments().getString(ARG_DREAM_NAME) : null;
         dreamDuration = getArguments().getDouble(ARG_DREAM_DURATION);
         dreamText = getArguments().getString(ARG_DREAM_TEXT);
+        token = getArguments().getString(ARG_TOKEN);
     }
 
     public void getAdviceDuration(AdviceDuration adviceDuration) {

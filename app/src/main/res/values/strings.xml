@@ -41,7 +41,8 @@
     <string name="hours"> ч</string>
     <string name="empty">" "</string>
 
-    <string name="please_enter_username">Пожалуйста, введите логин</string>
+    <string name="please_enter_username">Вход</string>
 
     <string name="username">логин</string>
+    <string name="password">пароль</string>
 </resources>

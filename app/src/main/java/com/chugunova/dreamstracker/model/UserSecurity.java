@@ -4,17 +4,17 @@ import com.google.gson.annotations.SerializedName;
 
 import androidx.annotation.NonNull;
 
-public class User {
+public class UserSecurity {
 
     @SerializedName("username")
     private String userName;
 
-    @SerializedName("password")
-    private String userPassword;
+    @SerializedName("token")
+    private String token;
 
-    public User(String userName, String userPassword) {
+    public UserSecurity(String userName, String token) {
         this.userName = userName;
-        this.userPassword = userPassword;
+        this.token = token;
     }
 
     public String getUserName() {
@@ -25,19 +25,20 @@ public class User {
         this.userName = userName;
     }
 
-    public String getUserPassword() {
-        return userPassword;
+    public String getToken() {
+        return token;
     }
 
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
+    public void setToken(String token) {
+        this.token = token;
     }
 
     @NonNull
     @Override
     public String toString() {
-        return "User{" +
+        return "UserSecurity{" +
                 "userName='" + userName + '\'' +
+                ", token='" + token + '\'' +
                 '}';
     }
 }

@@ -9,5 +9,7 @@
     <color name="colorToolbar">#1a1d22</color>
     <color name="colorItemDream">#DEB887</color>
 
+    <color name="colorCustomWhite">#80ffffff</color>
+
 
 </resources>

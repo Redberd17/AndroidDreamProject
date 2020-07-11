@@ -14,12 +14,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import static com.chugunova.dreamstracker.login.LoginFragment.ARG_TOKEN;
+
 public class NewDreamFragment extends Fragment {
 
     public static String ARG_USERNAME = "arg_username";
     private TextView dreamName, dreamDuration, dreamText;
     private NewDreamPresenter mPresenter;
     private String userName;
+    private String token;
 
 
     @Override
@@ -69,7 +72,7 @@ public class NewDreamFragment extends Fragment {
                 return false;
             }
             Dream dream = new Dream(dreamName.getText().toString(), dreamText.getText().toString(), Double.parseDouble(dreamDuration.getText().toString()));
-            mPresenter.onButtonSendPressed(userName, dream);
+            mPresenter.onButtonSendPressed(token, dream);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -89,5 +92,6 @@ public class NewDreamFragment extends Fragment {
     private void loadDataFromArgument() {
         assert getArguments() != null;
         userName = getArguments().getString(ARG_USERNAME);
+        token = getArguments().getString(ARG_TOKEN);
     }
 }

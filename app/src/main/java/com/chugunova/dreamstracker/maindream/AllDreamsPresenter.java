@@ -17,16 +17,16 @@ public class AllDreamsPresenter {
         mView = view;
     }
 
-    public void onCreateView(String userName) {
+    public void onCreateView(final String token) {
         ConfigRetrofit.getInstance()
-                .getDreams(userName)
+                .getDreams(token)
                 .enqueue(new Callback<List<Dream>>() {
                     @Override
                     public void onResponse(@NonNull Call<List<Dream>> call, @NonNull Response<List<Dream>> response) {
 
                         if (response.isSuccessful()) {
                             final List<Dream> dreams = response.body();
-                            mView.showAllDreams(dreams);
+                            mView.showAllDreams(dreams, token);
                         } else {
                             mView.showTextNoData();
                         }

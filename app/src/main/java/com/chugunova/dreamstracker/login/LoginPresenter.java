@@ -3,6 +3,7 @@ package com.chugunova.dreamstracker.login;
 import com.chugunova.dreamstracker.API.ConfigRetrofit;
 import com.chugunova.dreamstracker.R;
 import com.chugunova.dreamstracker.model.User;
+import com.chugunova.dreamstracker.model.UserSecurity;
 
 import androidx.annotation.NonNull;
 import retrofit2.*;
@@ -15,22 +16,24 @@ public class LoginPresenter {
         mView = view;
     }
 
-    public void onLoginButtonPressed(String username) {
+    public void onLoginButtonPressed(String username, String password) {
+        User user = new User(username, password);
         ConfigRetrofit.getInstance()
-                .getUser(username)
-                .enqueue(new Callback<User>() {
+                .authorizationUser(user)
+                .enqueue(new Callback<UserSecurity>() {
                     @Override
-                    public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
+                    public void onResponse(@NonNull Call<UserSecurity> call, @NonNull Response<UserSecurity> response) {
 
                         if (response.isSuccessful()) {
-                            mView.showMainFragment();
+                            UserSecurity userSecurity = response.body();
+                            mView.showMainFragment(userSecurity);
                         } else {
                             mView.showToast(mView.requireContext().getString(R.string.username_incorrect));
                         }
                     }
 
                     @Override
-                    public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
+                    public void onFailure(@NonNull Call<UserSecurity> call, @NonNull Throwable t) {
                         mView.showToast(mView.requireContext().getString(R.string.no_connection_to_server));
                         t.printStackTrace();
                     }

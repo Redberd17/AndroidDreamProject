@@ -14,9 +14,9 @@ public class CurrentDreamPresenter {
         mView = view;
     }
 
-    public void onCreateView(Double dreamDuration) {
+    public void onCreateView(Double dreamDuration, String token) {
         ConfigRetrofit.getInstance()
-                .getAdviceDuration(dreamDuration)
+                .getAdviceDuration(token, dreamDuration)
                 .enqueue(new Callback<AdviceDuration>() {
                     @Override
                     public void onResponse(@NonNull Call<AdviceDuration> call, @NonNull Response<AdviceDuration> response) {

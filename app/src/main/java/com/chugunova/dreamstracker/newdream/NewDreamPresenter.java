@@ -16,9 +16,9 @@ public class NewDreamPresenter {
         mView = view;
     }
 
-    public void onButtonSendPressed(String userName, Dream dream) {
+    public void onButtonSendPressed(String token, Dream dream) {
         ConfigRetrofit.getInstance()
-                .sendDream(userName, dream)
+                .sendDream(token, dream)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {

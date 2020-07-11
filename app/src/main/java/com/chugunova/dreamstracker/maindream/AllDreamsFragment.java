@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.chugunova.dreamstracker.login.LoginFragment.ARG_USERNAME;
+import static com.chugunova.dreamstracker.login.LoginFragment.ARG_TOKEN;
 
 public class AllDreamsFragment extends Fragment {
 
@@ -27,7 +27,7 @@ public class AllDreamsFragment extends Fragment {
     public static String ARG_DREAM_DURATION = "arg_dream_duration";
 
 
-    private String userName;
+    private String token;
 
     TextView emptyView;
     public ImageButton fab;
@@ -52,7 +52,7 @@ public class AllDreamsFragment extends Fragment {
         fab = view.findViewById(R.id.fab);
         recyclerView = mView.findViewById(R.id.list);
 
-        mPresenter.onCreateView(userName);
+        mPresenter.onCreateView(token);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,14 +77,14 @@ public class AllDreamsFragment extends Fragment {
         menu.findItem(R.id.smile).setVisible(false);
     }
 
-    public void showAllDreams(List<Dream> dreams) {
-        DataAdapterDreams adapter = new DataAdapterDreams(getContext(), dreams);
+    public void showAllDreams(List<Dream> dreams, String token) {
+        DataAdapterDreams adapter = new DataAdapterDreams(getContext(), dreams, token);
         recyclerView.setAdapter(adapter);
     }
 
     private void showNewDreamFragment() {
         Bundle argument = new Bundle();
-        argument.putString(ARG_USERNAME, userName);
+        argument.putString(ARG_TOKEN, token);
 
         AppCompatActivity activity = (AppCompatActivity)mView.getContext();
 
@@ -98,7 +98,7 @@ public class AllDreamsFragment extends Fragment {
 
     private void loadDataFromArgument() {
         assert getArguments() != null;
-        userName = getArguments().getString(ARG_USERNAME);
+        token = getArguments().getString(ARG_TOKEN);
     }
 
     public void showTextNoData() {
