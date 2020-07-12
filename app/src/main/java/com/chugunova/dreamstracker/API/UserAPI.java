@@ -13,9 +13,6 @@ public interface UserAPI {
     @POST("/auth/login")
     Call<UserSecurity> authorization(@Body User user);
 
-    /*@GET("users/{username}")
-    Call<User> getUser(@Path("username") String username);*/
-
     @GET("users/dreams")
     Call<List<Dream>> getDreams(@Header("Authorization") String token);
 

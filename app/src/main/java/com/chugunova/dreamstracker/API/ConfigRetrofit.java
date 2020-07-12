@@ -47,10 +47,6 @@ public class ConfigRetrofit {
         return mRetrofit.authorization(user);
     }
 
-    /*public Call<User> getUser(@Path("username") String username) {
-        return mRetrofit.getUser(username);
-    }*/
-
     public Call<List<Dream>> getDreams(@Header("Authorization") String token) {
         return mRetrofit.getDreams(token);
     }
