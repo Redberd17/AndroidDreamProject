@@ -5,6 +5,7 @@ import android.view.*;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.chugunova.dreamstracker.MainActivity;
 import com.chugunova.dreamstracker.R;
 import com.chugunova.dreamstracker.model.Dream;
 
@@ -58,8 +59,10 @@ public class NewDreamFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        MainActivity.needShowAlertDialog = false;
         super.onCreateOptionsMenu(menu, inflater);
         menu.findItem(R.id.smile).setVisible(false);
+        menu.findItem(R.id.action_registration).setVisible(false);
     }
 
     @Override

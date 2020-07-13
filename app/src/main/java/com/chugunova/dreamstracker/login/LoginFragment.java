@@ -6,6 +6,7 @@ import android.view.*;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.chugunova.dreamstracker.MainActivity;
 import com.chugunova.dreamstracker.R;
 import com.chugunova.dreamstracker.maindream.AllDreamsFragment;
 import com.chugunova.dreamstracker.model.UserSecurity;
@@ -50,6 +51,7 @@ public class LoginFragment extends Fragment {
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
+        MainActivity.needShowAlertDialog = true;
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
 
@@ -110,9 +112,11 @@ public class LoginFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_main, menu);
-        menu.clear();
         super.onCreateOptionsMenu(menu, inflater);
+        menu.findItem(R.id.action_send).setVisible(false);
+        menu.findItem(R.id.action_logout).setVisible(false);
+        menu.findItem(R.id.action_registration).setVisible(true);
+        menu.findItem(R.id.smile).setVisible(false);
     }
 
     public void saveUserName(String username, String password) {

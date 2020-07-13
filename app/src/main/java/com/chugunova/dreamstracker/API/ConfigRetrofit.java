@@ -47,6 +47,10 @@ public class ConfigRetrofit {
         return mRetrofit.authorization(user);
     }
 
+    public Call<ResponseBody> registrationUser(@Body User user) {
+        return mRetrofit.registration(user);
+    }
+
     public Call<List<Dream>> getDreams(@Header("Authorization") String token) {
         return mRetrofit.getDreams(token);
     }

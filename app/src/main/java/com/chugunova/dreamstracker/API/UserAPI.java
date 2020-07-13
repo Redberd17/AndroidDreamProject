@@ -13,6 +13,9 @@ public interface UserAPI {
     @POST("/auth/login")
     Call<UserSecurity> authorization(@Body User user);
 
+    @POST("/auth/registration")
+    Call<ResponseBody> registration(@Body User user);
+
     @GET("users/dreams")
     Call<List<Dream>> getDreams(@Header("Authorization") String token);
 

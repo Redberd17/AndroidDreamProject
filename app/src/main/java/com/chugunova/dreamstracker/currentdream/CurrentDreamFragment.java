@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.*;
 import android.widget.*;
 
+import com.chugunova.dreamstracker.MainActivity;
 import com.chugunova.dreamstracker.R;
 import com.chugunova.dreamstracker.model.AdviceDuration;
 
@@ -51,6 +52,7 @@ public class CurrentDreamFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        MainActivity.needShowAlertDialog = false;
         super.onViewCreated(view, savedInstanceState);
 
         TextView dreamDateTv = view.findViewById(R.id.date_dream);
@@ -74,6 +76,7 @@ public class CurrentDreamFragment extends Fragment {
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         menu.findItem(R.id.action_send).setVisible(false);
+        menu.findItem(R.id.action_registration).setVisible(false);
         item = menu.findItem(R.id.smile);
     }
 

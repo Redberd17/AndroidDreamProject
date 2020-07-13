@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.*;
 
 import com.chugunova.dreamstracker.login.LoginFragment;
+import com.chugunova.dreamstracker.registration.RegistrationFragment;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 public class MainActivity extends AppCompatActivity {
 
     SharedPreferences sharedUsername;
-    private final String SHARED_USERNAME = "shared_username";
+    public static boolean needShowAlertDialog = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,10 @@ public class MainActivity extends AppCompatActivity {
             fm.popBackStackImmediate("Login", FragmentManager.POP_BACK_STACK_INCLUSIVE);
             return true;
         }
+        if (id == R.id.action_registration) {
+            showRegistrationFragment();
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -80,10 +85,17 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+    private void showRegistrationFragment() {
+        RegistrationFragment registrationFragment = new RegistrationFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction().replace(R.id.main, registrationFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-            if (getSupportFragmentManager().getBackStackEntryCount() <= 1) {
+            if (needShowAlertDialog) {
                 showAlertDialog();
             }
         }

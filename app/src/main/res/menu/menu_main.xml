@@ -16,6 +16,12 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/action_registration"
+        android:orderInCategory="100"
+        android:title="@string/action_registration"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/smile"
         android:title=""
         android:actionLayout="@layout/custom_item_menu"

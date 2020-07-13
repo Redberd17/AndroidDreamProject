@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.*;
 import android.widget.*;
 
+import com.chugunova.dreamstracker.MainActivity;
 import com.chugunova.dreamstracker.R;
 import com.chugunova.dreamstracker.model.Dream;
 import com.chugunova.dreamstracker.newdream.NewDreamFragment;
@@ -45,6 +46,7 @@ public class AllDreamsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        MainActivity.needShowAlertDialog = true;
         final View view = inflater.inflate(R.layout.content_dream, container, false);
 
         emptyView = view.findViewById(R.id.empty_view);
@@ -75,6 +77,7 @@ public class AllDreamsFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         menu.findItem(R.id.action_send).setVisible(false);
         menu.findItem(R.id.smile).setVisible(false);
+        menu.findItem(R.id.action_registration).setVisible(false);
     }
 
     public void showAllDreams(List<Dream> dreams, String token) {
