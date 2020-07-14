@@ -62,4 +62,8 @@ public class ConfigRetrofit {
     public Call<AdviceDuration> getAdviceDuration(@Header("Authorization") String token, @Path("adviceDuration") Double dreamDuration) {
         return mRetrofit.getAdviceDuration(token, dreamDuration);
     }
+
+    public Call<ResponseBody> deleteUserDreams(@Header("Authorization") String token, @Path("dreamId") Integer dreamId) {
+        return mRetrofit.deleteUserDreams(token, dreamId);
+    }
 }

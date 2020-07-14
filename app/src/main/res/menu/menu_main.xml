@@ -26,4 +26,12 @@
         android:title=""
         android:actionLayout="@layout/custom_item_menu"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/delete"
+        android:orderInCategory="100"
+        android:title="@string/delete"
+        app:showAsAction="ifRoom" />
+
+
 </menu>

@@ -117,6 +117,7 @@ public class LoginFragment extends Fragment {
         menu.findItem(R.id.action_logout).setVisible(false);
         menu.findItem(R.id.action_registration).setVisible(true);
         menu.findItem(R.id.smile).setVisible(false);
+        menu.findItem(R.id.delete).setVisible(false);
     }
 
     public void saveUserName(String username, String password) {

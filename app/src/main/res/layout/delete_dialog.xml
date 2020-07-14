@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@drawable/border"
+    android:gravity="center"
+    android:padding="16dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/titleDeleteDialog"
+        android:layout_width="match_parent"
+        android:textStyle="bold"
+        android:textColor="@color/colorBlack"
+        android:textSize="24sp"
+        android:layout_height="wrap_content"
+        android:text="@string/attention" />
+
+    <TextView
+        android:id="@+id/textDeleteDialog"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:textSize="20sp"
+        android:textColor="@color/colorBlack"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/delete_dialog_button_no"
+            android:layout_width="50dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/border"
+            android:layout_height="wrap_content"
+            android:text="@string/no"
+            android:focusable="true" />
+
+        <Button
+            android:id="@+id/delete_dialog_button_yes"
+            android:layout_width="50dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/border"
+            android:layout_height="wrap_content"
+            android:text="@string/yes"
+            android:focusable="true" />
+    </LinearLayout>
+</LinearLayout>

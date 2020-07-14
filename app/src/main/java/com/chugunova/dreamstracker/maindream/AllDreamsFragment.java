@@ -22,6 +22,7 @@ import static com.chugunova.dreamstracker.login.LoginFragment.ARG_TOKEN;
 
 public class AllDreamsFragment extends Fragment {
 
+    public static String ARG_DREAM_ID = "arg_dream_id";
     public static String ARG_DREAM_DATE = "arg_dream_date";
     public static String ARG_DREAM_NAME = "arg_dream_name";
     public static String ARG_DREAM_TEXT = "arg_dream_text";
@@ -78,6 +79,7 @@ public class AllDreamsFragment extends Fragment {
         menu.findItem(R.id.action_send).setVisible(false);
         menu.findItem(R.id.smile).setVisible(false);
         menu.findItem(R.id.action_registration).setVisible(false);
+        menu.findItem(R.id.delete).setVisible(false);
     }
 
     public void showAllDreams(List<Dream> dreams, String token) {

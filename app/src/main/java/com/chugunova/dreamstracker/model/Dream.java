@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 import androidx.annotation.NonNull;
 
 public class Dream {
+    @SerializedName("dreamId")
+    private Integer dreamId;
+
     @SerializedName("dreamName")
     private String dreamName;
 
@@ -17,7 +20,8 @@ public class Dream {
     @SerializedName("dreamDuration")
     private Double dreamDuration;
 
-    public Dream(String dreamName, String dreamDate, String dreamText, Double dreamDuration) {
+    public Dream(Integer dreamId, String dreamName, String dreamDate, String dreamText, Double dreamDuration) {
+        this.dreamId = dreamId;
         this.dreamName = dreamName;
         this.dreamDate = dreamDate;
         this.dreamText = dreamText;
@@ -28,6 +32,14 @@ public class Dream {
         this.dreamName = dreamName;
         this.dreamText = dreamText;
         this.dreamDuration = dreamDuration;
+    }
+
+    public Integer getDreamId() {
+        return dreamId;
+    }
+
+    public void setDreamId(Integer dreamId) {
+        this.dreamId = dreamId;
     }
 
     public String getDreamName() {
@@ -65,6 +77,12 @@ public class Dream {
     @NonNull
     @Override
     public String toString() {
-        return "Dream{dreamName='" + this.dreamName + '\'' + ", dreamDate='" + this.dreamDate + '\'' + ", dreamText='" + this.dreamText + '\'' + ", dreamDuration=" + this.dreamDuration + '}';
+        return "Dream{" +
+                "dreamId='" + dreamId + '\'' +
+                ", dreamName='" + dreamName + '\'' +
+                ", dreamDate='" + dreamDate + '\'' +
+                ", dreamText='" + dreamText + '\'' +
+                ", dreamDuration=" + dreamDuration +
+                '}';
     }
 }

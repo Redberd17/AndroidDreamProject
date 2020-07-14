@@ -2,6 +2,7 @@
     <string name="app_name">DreamsTracker</string>
     <string name="action_logout">Сменить пользователя</string>
     <string name="action_send">Сохранить</string>
+    <string name="delete">Удалить сон</string>
     <string name="action_registration">Регистрация</string>
 
     <string name="first_fragment_label">First Fragment</string>
@@ -13,11 +14,15 @@
     <string name="yes">Да</string>
     <string name="no">Нет</string>
 
+    <string name="attention">Внимание</string>
+
     <string name="adviceDuration">Совет</string>
 
     <string name="ok">OK</string>
 
     <string name="user_was_added">Пользователь успешно зарегистрирован</string>
+
+    <string name="dream_was_deleted">Сон успешно удален</string>
 
     <string name="username_incorrect">Неверный логин или пароль</string>
     <string name="no_connection_to_server">Нет соединения с сервером</string>
@@ -42,6 +47,7 @@
     <string name="data_incorrect">Не все поля заполнены</string>
 
     <string name="dream_not_saved">Упс, что-то пошло не так. Сон не сохранился.</string>
+    <string name="dream_not_deleted">Упс, что-то пошло не так. Сон не удалился.</string>
 
     <string name="hours"> ч</string>
     <string name="empty">" "</string>

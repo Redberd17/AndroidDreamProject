@@ -63,6 +63,7 @@ public class NewDreamFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         menu.findItem(R.id.smile).setVisible(false);
         menu.findItem(R.id.action_registration).setVisible(false);
+        menu.findItem(R.id.delete).setVisible(false);
     }
 
     @Override

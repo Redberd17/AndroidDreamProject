@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:src="@mipmap/plus_1"
+        android:src="@mipmap/plus"
         android:padding="5dp"
         android:background="@drawable/round"
         android:contentDescription="@string/description_new_dream" />

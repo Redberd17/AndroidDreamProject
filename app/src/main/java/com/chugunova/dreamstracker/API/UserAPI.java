@@ -24,4 +24,7 @@ public interface UserAPI {
 
     @GET("users/adviceDurations/{dreamDuration}")
     Call<AdviceDuration> getAdviceDuration(@Header("Authorization") String token, @Path("dreamDuration") Double dreamDuration);
+
+    @DELETE("users/dreams/dream/{dreamId}")
+    Call<ResponseBody> deleteUserDreams(@Header("Authorization") String token, @Path("dreamId") Integer dreamId);
 }

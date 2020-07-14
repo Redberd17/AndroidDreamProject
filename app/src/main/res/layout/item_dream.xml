@@ -20,19 +20,26 @@
 
             <TextView
                 android:id="@+id/date_dreams"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="0.4"
                 android:padding="5dp"
                 android:textColor="@android:color/black"
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
+            <ImageView
+                android:id="@+id/dream_smile"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:src="@drawable/bad_dream"
+                android:contentDescription="@string/description_advice" />
+
             <TextView
                 android:id="@+id/name_dreams"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.6"
+                android:layout_weight="0.5"
                 android:padding="5dp"
                 android:maxLines="1"
                 android:ellipsize="end"

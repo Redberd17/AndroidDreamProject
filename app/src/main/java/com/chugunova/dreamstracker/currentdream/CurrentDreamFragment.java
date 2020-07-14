@@ -8,6 +8,7 @@ import android.widget.*;
 
 import com.chugunova.dreamstracker.MainActivity;
 import com.chugunova.dreamstracker.R;
+import com.chugunova.dreamstracker.maindream.AllDreamsFragment;
 import com.chugunova.dreamstracker.model.AdviceDuration;
 
 import java.util.Objects;
@@ -15,22 +16,25 @@ import java.util.Objects;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import static com.chugunova.dreamstracker.login.LoginFragment.ARG_TOKEN;
 import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_DATE;
 import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_DURATION;
+import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_ID;
 import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_NAME;
 import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_TEXT;
 
 public class CurrentDreamFragment extends Fragment {
 
     private CurrentDreamPresenter mPresenter;
-    public static String ARG_USERNAME = "arg_username";
     private String dreamDate, dreamName, dreamText;
-    Double dreamDuration;
-    MenuItem item;
-    AdviceDuration adviceDuration;
+    private Double dreamDuration;
+    private Integer dreamId;
+    private MenuItem item;
+    private AdviceDuration adviceDuration;
     private String token;
 
     @Override
@@ -77,6 +81,7 @@ public class CurrentDreamFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         menu.findItem(R.id.action_send).setVisible(false);
         menu.findItem(R.id.action_registration).setVisible(false);
+        menu.findItem(R.id.delete).setVisible(true);
         item = menu.findItem(R.id.smile);
     }
 
@@ -85,7 +90,11 @@ public class CurrentDreamFragment extends Fragment {
         int id = item.getItemId();
 
         if (id == R.id.smile) {
-            showAdviceDuration();
+            showAdviceDurationDialog();
+            return true;
+        }
+        if (id == R.id.delete) {
+            showDeleteAttentionDialog();
             return true;
         }
 
@@ -104,6 +113,7 @@ public class CurrentDreamFragment extends Fragment {
         dreamDuration = getArguments().getDouble(ARG_DREAM_DURATION);
         dreamText = getArguments().getString(ARG_DREAM_TEXT);
         token = getArguments().getString(ARG_TOKEN);
+        dreamId = getArguments().getInt(ARG_DREAM_ID);
     }
 
     public void getAdviceDuration(AdviceDuration adviceDuration) {
@@ -132,7 +142,7 @@ public class CurrentDreamFragment extends Fragment {
         }
     }
 
-    private void showAdviceDuration() {
+    private void showAdviceDurationDialog() {
         final AlertDialog.Builder ad = new AlertDialog.Builder(requireContext());
         final View customLayout = getLayoutInflater().inflate(R.layout.custom_dialog, null);
         ad.setView(customLayout);
@@ -150,5 +160,39 @@ public class CurrentDreamFragment extends Fragment {
         });
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
+    }
+
+    private void showDeleteAttentionDialog() {
+        final AlertDialog.Builder ad = new AlertDialog.Builder(requireContext());
+        final View customLayout = getLayoutInflater().inflate(R.layout.delete_dialog, null);
+        ad.setView(customLayout);
+        Button buttonNo = customLayout.findViewById(R.id.delete_dialog_button_no);
+        Button buttonYes = customLayout.findViewById(R.id.delete_dialog_button_yes);
+        final AlertDialog dialog = ad.create();
+        buttonNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        buttonYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPresenter.onDeleteDialogButtonYesPressed(token, dreamId);
+                dialog.dismiss();
+            }
+        });
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+    }
+
+    public void showAllDreamsFragment() {
+        Bundle argument = new Bundle();
+        argument.putString(ARG_TOKEN, token);
+        AppCompatActivity activity = (AppCompatActivity)requireContext();
+        AllDreamsFragment allDreamsFragment = new AllDreamsFragment();
+        allDreamsFragment.setArguments(argument);
+        FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction().replace(R.id.main, allDreamsFragment);
+        fragmentTransaction.commit();
     }
 }

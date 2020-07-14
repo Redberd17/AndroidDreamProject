@@ -3,6 +3,7 @@ package com.chugunova.dreamstracker.maindream;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.*;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chugunova.dreamstracker.R;
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import static com.chugunova.dreamstracker.login.LoginFragment.ARG_TOKEN;
 import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_DATE;
 import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_DURATION;
+import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_ID;
 import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_NAME;
 import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_TEXT;
 
@@ -49,6 +51,23 @@ public class DataAdapterDreams extends RecyclerView.Adapter<DataAdapterDreams.Vi
         holder.textDream.setText(dream.getDreamText());
         holder.duration = dream.getDreamDuration();
         holder.token = token;
+        holder.dreamId = dream.getDreamId();
+
+        configDreamSmile(holder);
+    }
+
+    private void configDreamSmile(DataAdapterDreams.ViewHolder holder) {
+        if (holder.duration <= 3) {
+            holder.dreamSmile.setImageResource(R.drawable.bad_dream);
+        } else if (3 < holder.duration && holder.duration <= 5) {
+            holder.dreamSmile.setImageResource(R.drawable.normal_dream);
+        } else if (5 < holder.duration && holder.duration <= 7) {
+            holder.dreamSmile.setImageResource(R.drawable.good_dream);
+        } else if (7 < holder.duration && holder.duration <= 9) {
+            holder.dreamSmile.setImageResource(R.drawable.perfect_dream);
+        } else if (holder.duration > 3) {
+            holder.dreamSmile.setImageResource(R.drawable.good_dream);
+        }
     }
 
     @Override
@@ -61,7 +80,9 @@ public class DataAdapterDreams extends RecyclerView.Adapter<DataAdapterDreams.Vi
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         final TextView dateDream, nameDream, textDream;
+        final ImageView dreamSmile;
         private Double duration;
+        private Integer dreamId;
         private String token;
 
         ViewHolder(final View view) {
@@ -69,6 +90,7 @@ public class DataAdapterDreams extends RecyclerView.Adapter<DataAdapterDreams.Vi
             dateDream = view.findViewById(R.id.date_dreams);
             nameDream = view.findViewById(R.id.name_dreams);
             textDream = view.findViewById(R.id.text_dreams);
+            dreamSmile = view.findViewById(R.id.dream_smile);
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -79,6 +101,7 @@ public class DataAdapterDreams extends RecyclerView.Adapter<DataAdapterDreams.Vi
                     argument.putString(ARG_DREAM_TEXT, textDream.getText().toString());
                     argument.putDouble(ARG_DREAM_DURATION, duration);
                     argument.putString(ARG_TOKEN, token);
+                    argument.putInt(ARG_DREAM_ID, dreamId);
 
                     showCurrentDreamFragment(argument, view);
                 }
