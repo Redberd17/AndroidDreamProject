@@ -1,0 +1,64 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:id="@+id/relLay">
+
+    <ImageView
+        android:id="@+id/triangleOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/messageText"
+        android:src="@mipmap/triangle"
+        android:layout_marginTop="-27dp"
+        android:layout_marginStart="0dp" />
+
+    <ImageView
+        android:id="@+id/triangleTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/messageText"
+        android:src="@mipmap/triangletwo"
+        android:layout_marginTop="-27dp"
+        android:layout_marginStart="330dp" />
+
+    <TextView
+        android:id="@+id/messageText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/message_text_background_in"
+        android:padding="25dp"
+        android:text="TextView"
+        android:textColor="@android:color/black"
+        android:textSize="23sp" />
+
+    <TextView
+        android:id="@+id/mesDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/messageText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="-25dp"
+        android:textSize="15dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/mesFrom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="5dp"
+        android:layout_marginStart="5dp"
+        android:textStyle="bold"
+        android:layout_marginEnd="5dp"
+        android:textSize="20dp"
+        android:text="MesFrom" />
+
+
+</RelativeLayout>

@@ -14,7 +14,11 @@
     <string name="yes">Да</string>
     <string name="no">Нет</string>
 
+    <string name="warning_delete_dream">Вы уверены, что хотите удалить данный сон?</string>
+
     <string name="attention">Внимание</string>
+
+    <string name="your_text">Введите текст</string>
 
     <string name="adviceDuration">Совет</string>
 

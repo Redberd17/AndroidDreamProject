@@ -27,4 +27,10 @@ public interface UserAPI {
 
     @DELETE("users/dreams/dream/{dreamId}")
     Call<ResponseBody> deleteUserDreams(@Header("Authorization") String token, @Path("dreamId") Integer dreamId);
+
+    @POST("users/messages/message")
+    Call<ResponseBody> sendMessage(@Header("Authorization") String token, @Body Message message);
+
+    @GET("users/messages")
+    Call<List<Message>> getAllMessage(@Header("Authorization") String token);
 }

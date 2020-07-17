@@ -24,13 +24,31 @@
         android:textColor="@color/colorWhite"
         android:text="@string/no_data_available" />
 
-    <ImageButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:src="@mipmap/plus"
-        android:padding="5dp"
-        android:background="@drawable/round"
-        android:contentDescription="@string/description_new_dream" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/button_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:src="@mipmap/chat"
+            android:padding="5dp"
+            android:background="@drawable/round"
+            android:contentDescription="@string/description_new_dream" />
+
+        <ImageButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:src="@mipmap/plus"
+            android:padding="5dp"
+            android:background="@drawable/round"
+            android:contentDescription="@string/description_new_dream" />
+
+
+    </LinearLayout>
 </LinearLayout>

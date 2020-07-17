@@ -124,19 +124,19 @@ public class CurrentDreamFragment extends Fragment {
     private void configSmile(AdviceDuration adviceDuration) {
         switch (adviceDuration.getAdviceDurGrade()) {
             case 2: {
-                item.setIcon(R.drawable.bad_dream);
+                item.setIcon(R.drawable.bad_dream_2);
                 break;
             }
             case 3: {
-                item.setIcon(R.drawable.normal_dream);
+                item.setIcon(R.drawable.satisfactory_dream_3);
                 break;
             }
             case 4: {
-                item.setIcon(R.drawable.good_dream);
+                item.setIcon(R.drawable.good_dream_4);
                 break;
             }
             case 5: {
-                item.setIcon(R.drawable.perfect_dream);
+                item.setIcon(R.drawable.perfect_dream_5);
                 break;
             }
         }

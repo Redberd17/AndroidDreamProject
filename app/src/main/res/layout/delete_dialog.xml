@@ -23,7 +23,7 @@
         android:textSize="20sp"
         android:textColor="@color/colorBlack"
         android:layout_height="wrap_content"
-        android:text="" />
+        android:text="@string/warning_delete_dream" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -35,6 +35,7 @@
             android:id="@+id/delete_dialog_button_no"
             android:layout_width="50dp"
             android:layout_marginTop="25dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/border"
             android:layout_height="wrap_content"
             android:text="@string/no"

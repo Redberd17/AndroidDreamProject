@@ -29,10 +29,10 @@
 
             <ImageView
                 android:id="@+id/dream_smile"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1"
-                android:src="@drawable/bad_dream"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_gravity="center"
+                android:src="@drawable/bad_dream_2"
                 android:contentDescription="@string/description_advice" />
 
             <TextView

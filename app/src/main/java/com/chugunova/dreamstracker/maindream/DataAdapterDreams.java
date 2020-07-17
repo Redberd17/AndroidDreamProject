@@ -57,16 +57,14 @@ public class DataAdapterDreams extends RecyclerView.Adapter<DataAdapterDreams.Vi
     }
 
     private void configDreamSmile(DataAdapterDreams.ViewHolder holder) {
-        if (holder.duration <= 3) {
-            holder.dreamSmile.setImageResource(R.drawable.bad_dream);
-        } else if (3 < holder.duration && holder.duration <= 5) {
-            holder.dreamSmile.setImageResource(R.drawable.normal_dream);
-        } else if (5 < holder.duration && holder.duration <= 7) {
-            holder.dreamSmile.setImageResource(R.drawable.good_dream);
-        } else if (7 < holder.duration && holder.duration <= 9) {
-            holder.dreamSmile.setImageResource(R.drawable.perfect_dream);
-        } else if (holder.duration > 3) {
-            holder.dreamSmile.setImageResource(R.drawable.good_dream);
+        if (holder.duration < 4) {
+            holder.dreamSmile.setImageResource(R.drawable.bad_dream_2);
+        } else if (4 <= holder.duration && holder.duration < 6 || holder.duration > 11) {
+            holder.dreamSmile.setImageResource(R.drawable.satisfactory_dream_3);
+        } else if (6 <= holder.duration && holder.duration < 7 || 9 < holder.duration && holder.duration <= 11) {
+            holder.dreamSmile.setImageResource(R.drawable.good_dream_4);
+        } else if (7 <= holder.duration && holder.duration <= 9) {
+            holder.dreamSmile.setImageResource(R.drawable.perfect_dream_5);
         }
     }
 

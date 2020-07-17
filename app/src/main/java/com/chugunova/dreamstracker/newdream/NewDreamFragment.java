@@ -7,13 +7,14 @@ import android.widget.Toast;
 
 import com.chugunova.dreamstracker.MainActivity;
 import com.chugunova.dreamstracker.R;
+import com.chugunova.dreamstracker.maindream.AllDreamsFragment;
 import com.chugunova.dreamstracker.model.Dream;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import static com.chugunova.dreamstracker.login.LoginFragment.ARG_TOKEN;
 
@@ -45,7 +46,7 @@ public class NewDreamFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        MainActivity.needShowAlertDialog = false;
         dreamName = view.findViewById(R.id.name_new_dream);
         dreamDuration = view.findViewById(R.id.duration_new_dream);
         dreamText = view.findViewById(R.id.text_new_dream);
@@ -59,7 +60,6 @@ public class NewDreamFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        MainActivity.needShowAlertDialog = false;
         super.onCreateOptionsMenu(menu, inflater);
         menu.findItem(R.id.smile).setVisible(false);
         menu.findItem(R.id.action_registration).setVisible(false);
@@ -83,9 +83,13 @@ public class NewDreamFragment extends Fragment {
     }
 
     public void showAllDreamsFragment() {
+        Bundle argument = new Bundle();
+        argument.putString(ARG_TOKEN, token);
         AppCompatActivity activity = (AppCompatActivity)requireContext();
-        FragmentManager fm = activity.getSupportFragmentManager();
-        fm.popBackStack();
+        AllDreamsFragment allDreamsFragment = new AllDreamsFragment();
+        allDreamsFragment.setArguments(argument);
+        FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction().replace(R.id.main, allDreamsFragment);
+        fragmentTransaction.commit();
     }
 
     public void showToast(String text) {

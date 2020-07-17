@@ -66,4 +66,12 @@ public class ConfigRetrofit {
     public Call<ResponseBody> deleteUserDreams(@Header("Authorization") String token, @Path("dreamId") Integer dreamId) {
         return mRetrofit.deleteUserDreams(token, dreamId);
     }
+
+    public Call<ResponseBody> sendMessage(@Header("Authorization") String token, @Body Message message) {
+        return mRetrofit.sendMessage(token, message);
+    }
+
+    public Call<List<Message>> getAllMessage(@Header("Authorization") String token) {
+        return mRetrofit.getAllMessage(token);
+    }
 }

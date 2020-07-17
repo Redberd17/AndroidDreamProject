@@ -6,6 +6,7 @@ import android.widget.*;
 
 import com.chugunova.dreamstracker.MainActivity;
 import com.chugunova.dreamstracker.R;
+import com.chugunova.dreamstracker.message.AllMessageFragment;
 import com.chugunova.dreamstracker.model.Dream;
 import com.chugunova.dreamstracker.newdream.NewDreamFragment;
 
@@ -19,6 +20,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import static com.chugunova.dreamstracker.login.LoginFragment.ARG_TOKEN;
+import static com.chugunova.dreamstracker.login.LoginFragment.ARG_USERNAME;
 
 public class AllDreamsFragment extends Fragment {
 
@@ -27,12 +29,13 @@ public class AllDreamsFragment extends Fragment {
     public static String ARG_DREAM_NAME = "arg_dream_name";
     public static String ARG_DREAM_TEXT = "arg_dream_text";
     public static String ARG_DREAM_DURATION = "arg_dream_duration";
-
+    private String username;
 
     private String token;
 
     TextView emptyView;
     public ImageButton fab;
+    public ImageButton button_chat;
     private AllDreamsPresenter mPresenter;
     private View mView;
     private RecyclerView recyclerView;
@@ -53,6 +56,7 @@ public class AllDreamsFragment extends Fragment {
         emptyView = view.findViewById(R.id.empty_view);
         mView = view;
         fab = view.findViewById(R.id.fab);
+        button_chat = view.findViewById(R.id.button_chat);
         recyclerView = mView.findViewById(R.id.list);
 
         mPresenter.onCreateView(token);
@@ -61,6 +65,12 @@ public class AllDreamsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 showNewDreamFragment();
+            }
+        });
+        button_chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAllMessage();
             }
         });
 
@@ -101,9 +111,25 @@ public class AllDreamsFragment extends Fragment {
         fragmentTransaction.commit();
     }
 
+    private void showAllMessage() {
+        Bundle argument = new Bundle();
+        argument.putString(ARG_TOKEN, token);
+        argument.putString(ARG_USERNAME, username);
+
+        AppCompatActivity activity = (AppCompatActivity)mView.getContext();
+
+        AllMessageFragment allMessageFragment = new AllMessageFragment();
+        allMessageFragment.setArguments(argument);
+
+        FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction().replace(R.id.main, allMessageFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
     private void loadDataFromArgument() {
         assert getArguments() != null;
         token = getArguments().getString(ARG_TOKEN);
+        username = getArguments().getString(ARG_USERNAME);
     }
 
     public void showTextNoData() {
