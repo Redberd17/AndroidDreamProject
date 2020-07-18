@@ -32,7 +32,7 @@ public class NewDreamPresenter {
 
                     @Override
                     public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-                        mView.showToast(mView.requireContext().getString(R.string.no_response_from_server));
+                        mView.showToast(mView.requireContext().getString(R.string.no_connection_to_server));
                         t.printStackTrace();
                     }
                 });

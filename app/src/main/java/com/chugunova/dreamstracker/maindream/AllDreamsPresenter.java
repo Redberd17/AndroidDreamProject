@@ -35,7 +35,7 @@ public class AllDreamsPresenter {
                     @Override
                     public void onFailure(@NonNull Call<List<Dream>> call, @NonNull Throwable t) {
                         mView.showTextNoData();
-                        mView.showToast(mView.requireContext().getString(R.string.no_response_from_server));
+                        mView.showToast(mView.requireContext().getString(R.string.no_connection_to_server));
                         t.printStackTrace();
                     }
                 });

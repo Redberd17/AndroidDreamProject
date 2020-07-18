@@ -11,7 +11,6 @@ import com.chugunova.dreamstracker.registration.RegistrationFragment;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity {
@@ -50,8 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.action_logout) {
             deleteUsername();
-            FragmentManager fm = getSupportFragmentManager();
-            fm.popBackStackImmediate("Login", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            showLoginFragment();
             return true;
         }
         if (id == R.id.action_registration) {
@@ -97,9 +95,11 @@ public class MainActivity extends AppCompatActivity {
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
             if (needShowAlertDialog) {
                 showAlertDialog();
+            } else {
+                return super.onKeyDown(keyCode, event);
             }
         }
-        return super.onKeyDown(keyCode, event);
+        return true;
     }
 
     public void deleteUsername() {

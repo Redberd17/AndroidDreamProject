@@ -94,9 +94,6 @@ public class LoginFragment extends Fragment {
             saveUserName(editTextLogin.getText().toString(), editTextPassword.getText().toString());
         }
 
-        editTextLogin.setText("");
-        editTextPassword.setText("");
-
         argument.putString(ARG_TOKEN, "Bearer_" + userSecurity.getToken());
 
         AppCompatActivity activity = (AppCompatActivity)requireContext();

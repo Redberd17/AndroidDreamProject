@@ -15,8 +15,8 @@ import retrofit2.http.*;
 public class ConfigRetrofit {
 
     private static ConfigRetrofit mInstance;
-    private static final String BASE_URL = "http://10.0.2.2:8080";
-    //private static final String BASE_URL = "http://172.20.10.4:8080";
+    //private static final String BASE_URL = "http://10.0.2.2:8080";
+    private static final String BASE_URL = "http://192.168.43.40:8080";
 
     private UserAPI mRetrofit;
 

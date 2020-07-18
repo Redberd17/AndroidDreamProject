@@ -11,8 +11,7 @@ import com.chugunova.dreamstracker.R;
 import com.chugunova.dreamstracker.login.LoginFragment;
 import com.chugunova.dreamstracker.model.Message;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,6 +36,7 @@ public class AllMessageFragment extends Fragment {
     Toast toast;
     private String token;
     private String username;
+    private ImageButton newMessage;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,6 +59,8 @@ public class AllMessageFragment extends Fragment {
 
         ImageButton message = view.findViewById(R.id.button_send);
 
+        newMessage = view.findViewById(R.id.new_message);
+
         post = new ArrayList<>();
         postNew = new ArrayList<>();
 
@@ -80,6 +82,8 @@ public class AllMessageFragment extends Fragment {
 
                     @Override
                     public void onFailure(Call<List<Message>> call, Throwable t) {
+                        adapterMessages.setMessagesList(post);
+                        listMessages.setAdapter(adapterMessages);
                         Toast toastNew = Toast.makeText(getActivity(), getString(R.string.no_connection_to_server), Toast.LENGTH_LONG);
                         toastNew.show();
                         t.printStackTrace();
@@ -95,7 +99,7 @@ public class AllMessageFragment extends Fragment {
                 String textMes = textMessage.getText().toString();
 
                 if (textMes.isEmpty()) {
-                    textMessage.setHint("Empty message");
+                    textMessage.setHint("Пустое сообщение");
                 } else {
                     Message message1 = new Message();
 
@@ -111,12 +115,43 @@ public class AllMessageFragment extends Fragment {
 
                                 @Override
                                 public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                    Toast toast = Toast.makeText(requireContext(), getString(R.string.no_connection_to_server), Toast.LENGTH_LONG);
+                                    toast.show();
                                     t.printStackTrace();
                                 }
                             });
 
                     textMessage.setText("");
-                    textMessage.setHint("Your text");
+                    textMessage.setHint("Введите текст");
+                }
+            }
+        });
+
+        newMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listMessages.smoothScrollToPosition(adapterMessages.getItemCount() - 1);
+            }
+        });
+
+        listMessages.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                LinearLayoutManager layoutManager = (LinearLayoutManager)listMessages.getLayoutManager();
+                int visibleItemCount = 0;
+                int totalItemCount = 0;
+                int firstVisibleItems = 0;
+                if (layoutManager != null) {
+                    visibleItemCount = layoutManager.getChildCount();
+                    totalItemCount = layoutManager.getItemCount();
+                    firstVisibleItems = layoutManager.findFirstVisibleItemPosition();
+                }
+                if ((visibleItemCount + firstVisibleItems) >= totalItemCount) {
+                    newMessage.setVisibility(View.GONE);
+                    newMessage.setImageResource(R.mipmap.down);
+                } else {
+                    newMessage.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -131,20 +166,33 @@ public class AllMessageFragment extends Fragment {
                 .enqueue(new Callback<List<Message>>() {
                     @Override
                     public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
-
                         if (response.isSuccessful()) {
                             postNew = response.body();
 
+                            if (post.size() == 0 && postNew != null) {
+                                post.addAll(postNew);
+                                adapterMessages.notifyDataSetChanged();
+                            }
+
                             if (postNew.size() > post.size()) {
-                                Message buf = postNew.get(postNew.size() - 1);
-                                post.add(buf);
-                                adapterMessages.notifyItemInserted(post.size());
+                                List<Message> buf = new ArrayList<>();
+                                int newMes = postNew.size() - post.size();
+                                for (int i = 0; i < newMes; i++) {
+                                    buf.add(postNew.get(postNew.size() - 1 - i));
+                                    Collections.reverse(buf);
+                                }
+                                post.addAll(buf);
+                                adapterMessages.notifyDataSetChanged();
 
                                 LinearLayoutManager layoutManager = (LinearLayoutManager)listMessages.getLayoutManager();
 
                                 int totalItemCount = layoutManager.getItemCount();
                                 int lastVisible = layoutManager.findLastVisibleItemPosition();
                                 boolean endHasBeenReached = lastVisible + 2 >= totalItemCount;
+
+                                if (totalItemCount - lastVisible > 2) {
+                                    newMessage.setImageResource(R.drawable.new_mes);
+                                }
 
                                 if (totalItemCount > 0 && endHasBeenReached) {
                                     listMessages.smoothScrollToPosition(post.size());
@@ -167,7 +215,6 @@ public class AllMessageFragment extends Fragment {
 
                     @Override
                     public void onFailure(Call<List<Message>> call, Throwable t) {
-                        toast.show();
                         t.printStackTrace();
                     }
                 });

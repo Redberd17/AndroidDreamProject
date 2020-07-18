@@ -26,6 +26,8 @@
 
     <string name="user_was_added">Пользователь успешно зарегистрирован</string>
 
+    <string name="fields_is_empty">Поля не могут быть пустыми</string>
+
     <string name="dream_was_deleted">Сон успешно удален</string>
 
     <string name="username_incorrect">Неверный логин или пароль</string>

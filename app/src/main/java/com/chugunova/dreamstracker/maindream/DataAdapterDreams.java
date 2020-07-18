@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import static com.chugunova.dreamstracker.login.LoginFragment.ARG_TOKEN;
+import static com.chugunova.dreamstracker.login.LoginFragment.ARG_USERNAME;
 import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_DATE;
 import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_DURATION;
 import static com.chugunova.dreamstracker.maindream.AllDreamsFragment.ARG_DREAM_ID;
@@ -29,11 +30,13 @@ public class DataAdapterDreams extends RecyclerView.Adapter<DataAdapterDreams.Vi
     private LayoutInflater inflater;
     private List<Dream> dreams;
     private String token;
+    private String username;
 
-    public DataAdapterDreams(Context context, List<Dream> dreams, String token) {
+    public DataAdapterDreams(Context context, List<Dream> dreams, String token, String username) {
         this.inflater = LayoutInflater.from(context);
         this.dreams = dreams;
         this.token = token;
+        this.username = username;
     }
 
     @NonNull
@@ -51,6 +54,7 @@ public class DataAdapterDreams extends RecyclerView.Adapter<DataAdapterDreams.Vi
         holder.textDream.setText(dream.getDreamText());
         holder.duration = dream.getDreamDuration();
         holder.token = token;
+        holder.username = username;
         holder.dreamId = dream.getDreamId();
 
         configDreamSmile(holder);
@@ -82,6 +86,7 @@ public class DataAdapterDreams extends RecyclerView.Adapter<DataAdapterDreams.Vi
         private Double duration;
         private Integer dreamId;
         private String token;
+        private String username;
 
         ViewHolder(final View view) {
             super(view);
@@ -100,6 +105,7 @@ public class DataAdapterDreams extends RecyclerView.Adapter<DataAdapterDreams.Vi
                     argument.putDouble(ARG_DREAM_DURATION, duration);
                     argument.putString(ARG_TOKEN, token);
                     argument.putInt(ARG_DREAM_ID, dreamId);
+                    argument.putString(ARG_USERNAME, username);
 
                     showCurrentDreamFragment(argument, view);
                 }

@@ -16,21 +16,21 @@ public interface UserAPI {
     @POST("/auth/registration")
     Call<ResponseBody> registration(@Body User user);
 
-    @GET("users/dreams")
+    @GET("/users/dreams")
     Call<List<Dream>> getDreams(@Header("Authorization") String token);
 
-    @POST("users/dreams/dream")
+    @POST("/users/dreams/dream")
     Call<ResponseBody> sendDream(@Header("Authorization") String token, @Body Dream dream);
 
-    @GET("users/adviceDurations/{dreamDuration}")
+    @GET("/users/adviceDurations/{dreamDuration}")
     Call<AdviceDuration> getAdviceDuration(@Header("Authorization") String token, @Path("dreamDuration") Double dreamDuration);
 
-    @DELETE("users/dreams/dream/{dreamId}")
+    @DELETE("/users/dreams/dream/{dreamId}")
     Call<ResponseBody> deleteUserDreams(@Header("Authorization") String token, @Path("dreamId") Integer dreamId);
 
-    @POST("users/messages/message")
-    Call<ResponseBody> sendMessage(@Header("Authorization") String token, @Body Message message);
-
-    @GET("users/messages")
+    @GET("/users/messages")
     Call<List<Message>> getAllMessage(@Header("Authorization") String token);
+
+    @POST("/users/messages/message")
+    Call<ResponseBody> sendMessage(@Header("Authorization") String token, @Body Message message);
 }

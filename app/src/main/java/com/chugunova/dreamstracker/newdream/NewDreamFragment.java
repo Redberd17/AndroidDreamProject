@@ -85,6 +85,7 @@ public class NewDreamFragment extends Fragment {
     public void showAllDreamsFragment() {
         Bundle argument = new Bundle();
         argument.putString(ARG_TOKEN, token);
+        argument.putString(ARG_USERNAME, userName);
         AppCompatActivity activity = (AppCompatActivity)requireContext();
         AllDreamsFragment allDreamsFragment = new AllDreamsFragment();
         allDreamsFragment.setArguments(argument);

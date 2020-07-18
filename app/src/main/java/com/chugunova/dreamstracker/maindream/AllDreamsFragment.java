@@ -93,13 +93,14 @@ public class AllDreamsFragment extends Fragment {
     }
 
     public void showAllDreams(List<Dream> dreams, String token) {
-        DataAdapterDreams adapter = new DataAdapterDreams(getContext(), dreams, token);
+        DataAdapterDreams adapter = new DataAdapterDreams(getContext(), dreams, token, username);
         recyclerView.setAdapter(adapter);
     }
 
     private void showNewDreamFragment() {
         Bundle argument = new Bundle();
         argument.putString(ARG_TOKEN, token);
+        argument.putString(ARG_USERNAME, username);
 
         AppCompatActivity activity = (AppCompatActivity)mView.getContext();
 

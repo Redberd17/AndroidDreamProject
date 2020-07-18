@@ -48,7 +48,11 @@ public class RegistrationFragment extends Fragment {
         view.findViewById(R.id.registration).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mPresenter.onRegistrationButtonPressed(editTextLogin.getText().toString(), editTextPassword.getText().toString());
+                if (editTextLogin.getText().toString().isEmpty() || editTextPassword.getText().toString().isEmpty()) {
+                    showToast(getString(R.string.fields_is_empty));
+                } else {
+                    mPresenter.onRegistrationButtonPressed(editTextLogin.getText().toString(), editTextPassword.getText().toString());
+                }
             }
         });
     }
