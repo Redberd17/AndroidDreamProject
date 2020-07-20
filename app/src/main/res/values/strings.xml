@@ -54,6 +54,7 @@
 
     <string name="dream_not_saved">Упс, что-то пошло не так. Сон не сохранился.</string>
     <string name="dream_not_deleted">Упс, что-то пошло не так. Сон не удалился.</string>
+    <string name="dream_was_saved">Сон успешно сохранен</string>
 
     <string name="hours"> ч</string>
     <string name="empty">" "</string>

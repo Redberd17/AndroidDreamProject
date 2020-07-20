@@ -25,6 +25,7 @@ public class NewDreamPresenter {
 
                         if (response.isSuccessful()) {
                             mView.showAllDreamsFragment();
+                            mView.showToast(mView.requireContext().getString(R.string.dream_was_saved));
                         } else {
                             mView.showToast(mView.requireContext().getString(R.string.dream_not_saved));
                         }

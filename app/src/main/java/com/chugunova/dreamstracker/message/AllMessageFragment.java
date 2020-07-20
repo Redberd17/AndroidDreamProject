@@ -191,6 +191,7 @@ public class AllMessageFragment extends Fragment {
                                 boolean endHasBeenReached = lastVisible + 2 >= totalItemCount;
 
                                 if (totalItemCount - lastVisible > 2) {
+                                    newMessage.setVisibility(View.VISIBLE);
                                     newMessage.setImageResource(R.drawable.new_mes);
                                 }
 
